@@ -7,3 +7,8 @@ class TestIterateFile(TestCase):
         result = file_handler.iterate_file('testfile.txt', 1)
         expected = 'testfile(1).txt'
         self.assertEqual(result, expected)
+
+    def test_multiple_periods(self):
+        result = file_handler.iterate_file('hibernate.cfg.xml', 1)
+        expected = 'hibernate.cfg(1).xml'
+        self.assertEqual(result, expected)
