@@ -17,32 +17,32 @@ class ObjectMapper:
         contact = Contact()
         jdo = self.json_data_obj
 
-        contact.set_street1(str(jdo.location.street.number) + ' ' + jdo.location.street.name)
-        contact.set_city(jdo.location.city)
-        contact.set_state(state_abbreviation[jdo.location.state])
-        contact.set_postal_code_prefix(jdo.location.postcode)
-        contact.set_country(jdo.location.country)
-        contact.set_home_phone(jdo.phone)
-        contact.set_mobile_phone(jdo.cell)
-        contact.set_email(jdo.email)
-        # contact.set_county()
-        contact.set_latitude(jdo.location.coordinates.latitude)
-        contact.set_longitude(jdo.location.coordinates.longitude)
+        contact.street1 = str(jdo.location.street.number) + ' ' + jdo.location.street.name
+        contact.city = jdo.location.city
+        contact.state = state_abbreviation[jdo.location.state]
+        contact.postal_code_prefix = jdo.location.postcode
+        contact.country = jdo.location.country
+        contact.home_phone = jdo.phone
+        contact.mobile_phone = jdo.cell
+        contact.email = jdo.email
+        # contact.county
+        contact.latitude = jdo.location.coordinates.latitude
+        contact.longitude = jdo.location.coordinates.longitude
         return contact
 
     def map_person(self):
         person = Person()
         jdo = self.json_data_obj
 
-        person.set_first_name(jdo.name.first)
-        person.set_middle_name(jdo.name.first+jdo.name.last)
-        person.set_last_name(jdo.name.last)
-        person.set_full_name(jdo.name.first + ' ' + jdo.name.last)
-        person.set_title(jdo.name.title)
-        person.set_tax_id(jdo.id.value)
-        person.set_birth_date(jdo.dob.date)
-        person.set_gender(sex[jdo.gender])
-        person.set_contact(self.map_contact())
+        person.first_name = jdo.name.first
+        person.middle_name = jdo.name.first + jdo.name.last
+        person.last_name = jdo.name.last
+        person.full_name = jdo.name.first + ' ' + jdo.name.last
+        person.title = jdo.name.title
+        person.tax_id = jdo.id.value
+        person.birth_date = jdo.dob.date
+        person.gender = sex[jdo.gender]
+        person.contact = self.map_contact()
         return person
 
 

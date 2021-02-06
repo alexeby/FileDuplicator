@@ -4,31 +4,31 @@ from .constants import Constants as c
 
 def get_person_value(tok, person):
     switcher = {
-        c.first_name: person.get_first_name(),
-        c.middle_name: person.get_middle_name(),
-        c.last_name: person.get_last_name(),
-        c.full_name: person.get_full_name(),
-        c.title: person.get_title(),
-        c.tax_id: person.get_tax_id(),
-        c.birth_date: person.get_birth_date(),
-        c.gender: person.get_gender()
+        c.first_name: person.first_name,
+        c.middle_name: person.middle_name,
+        c.last_name: person.last_name,
+        c.full_name: person.full_name,
+        c.title: person.title,
+        c.tax_id: person.tax_id,
+        c.birth_date: person.birth_date,
+        c.gender: person.gender
     }
     return switcher.get(tok)
 
 
 def get_contact_value(tok, person):
-    contact = person.get_contact()
+    contact = person.contact
     switcher = {
-        c.street1: contact.get_street1(),
-        c.city: contact.get_city(),
-        c.state: contact.get_state(),
-        c.postal_code_prefix: contact.get_postal_code_prefix(),
-        c.country: contact.get_country(),
-        c.home_phone: contact.get_home_phone(),
-        c.mobile_phone: contact.get_mobile_phone(),
-        c.email: contact.get_email(),
-        c.latitude: contact.get_latitude(),
-        c.longitude: contact.get_longitude()
+        c.street1: contact.street1,
+        c.city: contact.city,
+        c.state: contact.state,
+        c.postal_code_prefix: contact.postal_code_prefix,
+        c.country: contact.country,
+        c.home_phone: contact.home_phone,
+        c.mobile_phone: contact.mobile_phone,
+        c.email: contact.email,
+        c.latitude: contact.latitude,
+        c.longitude: contact.longitude
     }
     return switcher.get(tok)
 
