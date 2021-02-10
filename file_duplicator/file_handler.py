@@ -8,8 +8,11 @@ from .object.object_mapper import ObjectMapper
 
 class FileHandler:
 
-    def __init__(self, api_url):
+    def __init__(self, api_url, left_token_trim, right_token_trim):
         self.api_url = api_url
+        self.left_token_trim = left_token_trim
+        self.right_token_trim = right_token_trim
+
         self.api_results = None
         self.current_person = None
 
@@ -43,12 +46,14 @@ class FileHandler:
             token_upper = token.upper()
             if token_upper.startswith(c.person) or token_upper.startswith(c.contact):
                 self.api_results = get_api_data(self.api_url)
+                if self.api_results is None:
+                    raise Exception
                 self.current_person = ObjectMapper(self.api_results[0]).map_person()
 
     def parse_line(self, regex_pattern: str, s: str):
         results = re.findall(regex_pattern, s)
         for result in results:
-            formatted_result = result.replace('{', '').replace('}', '')
+            formatted_result = result.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
             self.conditionally_populate_api_results(formatted_result)
             replace = self.get_token_value(formatted_result, self.current_person)
             s = re.sub(regex_pattern, replace, s, 1)

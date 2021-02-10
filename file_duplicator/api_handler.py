@@ -1,6 +1,12 @@
 import requests
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def get_api_data(api_endpoint: str):
-    r = requests.get(api_endpoint)
-    return r.json()['results']
+    try:
+        r = requests.get(api_endpoint, timeout=10)
+        return r.json()['results']
+    except requests.exceptions.Timeout:
+        logger.exception(requests.exceptions)

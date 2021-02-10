@@ -5,4 +5,6 @@ rmdir /s /q dist ^
  && mkdir dist\in\ ^
  && mkdir dist\out\ ^
  && mkdir dist\setup\ ^
- && copy setup\conf.ini dist\setup
+ && mkdir dist\log\ ^
+ && copy setup\conf.ini dist\setup ^
+ && copy setup\log.ini dist\setup

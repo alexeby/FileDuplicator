@@ -37,7 +37,7 @@ def process(token: str, person):
     token_upper = token.upper()
     if token_upper.startswith(c.person or c.party):
         return get_person_value(token_upper.split('.')[1], person)
-    elif token_upper.startswith('Contact.'):
+    elif token_upper.startswith(c.contact or c.address):
         return get_contact_value(token_upper.split('.')[1], person)
     else:
         return eval(token)
