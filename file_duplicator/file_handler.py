@@ -34,11 +34,12 @@ class FileHandler:
     def get_token_value(token: str, person):
         return data_handler.process(token, person)
 
-    def iterate_file(self, file: str, i: int):
+    @staticmethod
+    def iterate_file(file: str, i: int):
         file_name_list = file.split('.')
         size = len(file_name_list)
         file_type = file_name_list[size-1]
-        file_name = self.concat_list_to_string(file_name_list[0:size-1], '.')
+        file_name = FileHandler.concat_list_to_string(file_name_list[0:size-1], '.')
         return file_name + f'({i}).' + file_type
 
     def conditionally_populate_api_results(self, token: str):

@@ -1,5 +1,6 @@
 import configparser
 import logging
+import os
 
 # Init config parser
 parser = configparser.ConfigParser()
