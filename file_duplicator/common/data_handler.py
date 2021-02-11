@@ -1,4 +1,6 @@
 from .formatter import *
+import math
+import random
 from .constants import Constants as c
 
 
@@ -19,10 +21,10 @@ def get_person_value(tok, person):
 def get_contact_value(tok, person):
     contact = person.contact
     switcher = {
-        c.street1: contact.street1,
+        c.street: contact.street,
         c.city: contact.city,
         c.state: contact.state,
-        c.postal_code_prefix: contact.postal_code_prefix,
+        c.postal_code: contact.postal_code,
         c.country: contact.country,
         c.home_phone: contact.home_phone,
         c.mobile_phone: contact.mobile_phone,
@@ -35,10 +37,10 @@ def get_contact_value(tok, person):
 
 def process(token: str, person):
     token_upper = token.upper()
-    if token_upper.startswith(c.person or c.party):
+    if token_upper.startswith(c.person):
         return get_person_value(token_upper.split('.')[1], person)
-    elif token_upper.startswith(c.contact or c.address):
+    elif token_upper.startswith(c.address):
         return get_contact_value(token_upper.split('.')[1], person)
     else:
-        return eval(token)
+        return str(eval(token))
     pass

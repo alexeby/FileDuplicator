@@ -1,20 +1,14 @@
 class Person:
-    def __init__(self, first_name=None, middle_name=None, last_name=None, full_name=None, alias=None, maiden_name=None,
-                 mothers_maiden_name=None, title=None, suffix=None, tax_id=None, birth_date=None, death_date=None,
-                 gender=None, contact=None):
-        self.first_name = first_name
-        self.middle_name = middle_name
-        self.last_name = last_name
-        self.full_name = full_name
-        self.alias = alias
-        self.maiden_name = maiden_name
-        self.mothers_maiden_name = mothers_maiden_name
-        self.title = title
-        self.suffix = suffix
-        self.tax_id = tax_id
-        self.birth_date = birth_date
-        self.death_date = death_date
-        self.gender = gender
-        self.contact = contact
+    def __init__(self, first_name=None, middle_name=None, last_name=None, full_name=None,
+                 title=None, tax_id=None, birth_date=None, gender=None, contact=None):
+        self.first_name: str = first_name
+        self.middle_name: str = middle_name
+        self.last_name: str = last_name
+        self.full_name: str = full_name
+        self.title: str = title
+        self.tax_id: str = tax_id
+        self.birth_date: str = birth_date
+        self.gender: str = gender
+        self.contact: str = contact
 
 

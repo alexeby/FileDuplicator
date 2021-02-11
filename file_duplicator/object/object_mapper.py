@@ -7,8 +7,6 @@ from ..common.dict_translator import *
 
 class ObjectMapper:
 
-    json_data_obj = None
-
     def __init__(self, json_data: dict):
         json_data_str = json.dumps(json_data)
         self.json_data_obj = json.loads(json_data_str, object_hook=lambda d: SimpleNamespace(**d))
@@ -17,15 +15,14 @@ class ObjectMapper:
         contact = Contact()
         jdo = self.json_data_obj
 
-        contact.street1 = str(jdo.location.street.number) + ' ' + jdo.location.street.name
+        contact.street = str(jdo.location.street.number) + ' ' + jdo.location.street.name
         contact.city = jdo.location.city
         contact.state = state_abbreviation[jdo.location.state]
-        contact.postal_code_prefix = jdo.location.postcode
+        contact.postal_code = str(jdo.location.postcode)
         contact.country = jdo.location.country
         contact.home_phone = jdo.phone
         contact.mobile_phone = jdo.cell
         contact.email = jdo.email
-        # contact.county
         contact.latitude = jdo.location.coordinates.latitude
         contact.longitude = jdo.location.coordinates.longitude
         return contact
