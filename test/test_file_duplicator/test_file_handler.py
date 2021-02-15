@@ -9,6 +9,6 @@ class TestIterateFile(TestCase):
         self.assertEqual(result, expected)
 
     def test_multiple_periods(self):
-        result = FileHandler.iterate_file('hibernate.cfg.xml', 1)
-        expected = 'hibernate.cfg(1).xml'
+        result = FileHandler.iterate_file('test.cfg.xml', 1)
+        expected = 'test.cfg(1).xml'
         self.assertEqual(result, expected)

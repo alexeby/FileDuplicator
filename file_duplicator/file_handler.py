@@ -45,7 +45,7 @@ class FileHandler:
     def conditionally_populate_api_results(self, token: str):
         if self.api_results is None:
             token_upper = token.upper()
-            if token_upper.startswith(c.person) or token_upper.startswith(c.contact):
+            if token_upper.startswith(c.person):
                 self.api_results = get_api_data(self.api_url)
                 if self.api_results is None:
                     raise Exception

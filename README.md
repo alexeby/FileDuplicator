@@ -1,9 +1,17 @@
-# FileDuplicator README
+# File Duplicator
 
 ## Description
+The purpose of this program is to easily create copies of files while populating the files with generated information - 
+such as person or address information, random numbers, etc. This was developed for the purpose of bulk testing import
+functionality of other programs - especially if that program relies on unique information when importing.
 
 ## Installation
+This project is compatible with Python 3.6+. To install all requirements use:<br>
+`pip install -r requirements.txt`
 
+On Windows, a build can be created by running `build.bat`. This uses pyinstaller to create an executable file which 
+allows for easy build distribution. Note that this batch file relies on the project installation to use a python 
+virtual environment.
 
 ## Configurations
 
@@ -34,16 +42,16 @@
 ### Randomly Generated Address Data
 |Token|Description|
 |---|---|
-|`Address.Street`||
-|`Address.City`||
-|`Address.State`||
-|`Address.PostalCode`||
-|`Address.Country`||
-|`Address.HomePhone`||
-|`Address.MobilePhone`||
-|`Address.Email`||
-|`Address.Latitude`||
-|`Address.Longitud`||
+|`Address.Street`|Street|
+|`Address.City`|City|
+|`Address.State`|State|
+|`Address.PostalCode`|Postal Code|
+|`Address.Country`|Country|
+|`Address.HomePhone`|Home Phone|
+|`Address.MobilePhone`|Mobile Phone|
+|`Address.Email`|Email Address|
+|`Address.Latitude`|Latitude|
+|`Address.Longitude`|Longitude|
 
 ### Formatter Functions
 |Token Example|Description|
@@ -51,6 +59,27 @@
 |`number_formatter(X_Pattern)`|Creates random numbers following X-Pattern.|
 |`generate_date(Date_Format, Start_Date, End_Date)`|Generates a random date. Default parameters are generate_date('%m/%d/%Y', '01/01/1970', 'NOW') where 'NOW' is the current datetime.|
 |`value(Value_List)`|Randomly selects a value from a list of string objects.|
+
+### Additional Packages and Resources
+Additional supported packages:
+
+|Package|Link|Example|
+|---|---|---|
+|`math`|https://docs.python.org/3/library/math.html|math.ceil(123.456)|
+|`random`|https://docs.python.org/3/library/random.html|random.randint(0,20)|
+
+Common Date Codes for Formatting:
+
+| Code | Description |
+|---|---|
+|`%d`|Day|
+|`%m`|Month|
+|`%Y`|Year|
+|`%H`|Hour|
+|`%M`|Minute|
+|`%S`|Second|
+|`%f`|Microsecond|
+_For more date codes please refer to https://www.w3schools.com/python/python_datetime.asp_
 
 ## Example
 Example of how to use tokens to procedurally generate data:
