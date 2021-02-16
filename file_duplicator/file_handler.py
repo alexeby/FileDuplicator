@@ -8,10 +8,11 @@ from .object.object_mapper import ObjectMapper
 
 class FileHandler:
 
-    def __init__(self, api_url, left_token_trim, right_token_trim):
+    def __init__(self, api_url, left_token_trim, right_token_trim, num_copies,):
         self.api_url = api_url
         self.left_token_trim = left_token_trim
         self.right_token_trim = right_token_trim
+        self.num_copies = num_copies
 
         self.api_results = None
         self.current_person = None
@@ -27,7 +28,7 @@ class FileHandler:
     def concat_list_to_string(l: list, delimiter: str = ''):
         result = ''
         for i in l:
-            result = result + i + (delimiter if i != l[len(l)-1] else '')
+            result = result + str(i) + (delimiter if i != l[len(l)-1] else '')
         return result
 
     @staticmethod
@@ -42,14 +43,20 @@ class FileHandler:
         file_name = FileHandler.concat_list_to_string(file_name_list[0:size-1], '.')
         return file_name + f'({i}).' + file_type
 
+    def set_current_person(self, iteration: int):
+        if self.api_results is not None:
+            self.current_person = ObjectMapper(self.api_results[iteration]).map_person()
+
     def conditionally_populate_api_results(self, token: str):
         if self.api_results is None:
             token_upper = token.upper()
             if token_upper.startswith(c.person):
                 self.api_results = get_api_data(self.api_url)
                 if self.api_results is None:
-                    raise Exception
-                self.current_person = ObjectMapper(self.api_results[0]).map_person()
+                    raise Exception('Received no api_results from api_endpoint')
+                if len(self.api_results) != self.num_copies:
+                    raise Exception(f'num_copies error. Number of api_results={len(self.api_results)} while num_copies={self.num_copies}')
+                self.set_current_person(0)
 
     def parse_line(self, regex_pattern: str, s: str):
         results = re.findall(regex_pattern, s)
@@ -66,7 +73,7 @@ class FileHandler:
 
         with open(original_file_path, 'r') as original_file:
             for i in range(num_copies):
-                self.current_person = None if self.api_results is None else ObjectMapper(self.api_results[i]).map_person()
+                self.set_current_person(i)
                 copy_file_path = copy_file_dir + self.iterate_file(original_file_name, i + 1)
                 with open(copy_file_path, 'w') as copy_file:
                     for line in original_file:

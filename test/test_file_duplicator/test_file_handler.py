@@ -12,3 +12,16 @@ class TestIterateFile(TestCase):
         result = FileHandler.iterate_file('test.cfg.xml', 1)
         expected = 'test.cfg(1).xml'
         self.assertEqual(result, expected)
+
+
+class TestConcatListToString(TestCase):
+    def test_only_strings(self):
+        result = FileHandler.concat_list_to_string(['this', 'is', 'a', 'test'])
+        expected = 'thisisatest'
+        self.assertEqual(result, expected)
+
+    def test_with_integers(self):
+        result = FileHandler.concat_list_to_string(['this', 1, 'a', 'test'])
+        expected = 'this1atest'
+        self.assertEqual(result, expected)
+

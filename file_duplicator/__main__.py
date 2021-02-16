@@ -12,7 +12,7 @@ def main():
     logger.info(Config.ALL_CONFIGURATIONS)
 
     try:
-        file_handler = FileHandler(Config.API_URL, Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM)
+        file_handler = FileHandler(Config.API_URL, Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM, Config.NUM_COPIES)
         file_handler.duplicate_file(Config.ORIGINAL_FILE_DIR, Config.COPY_FILE_DIR, Config.NUM_COPIES, Config.REGEX_PATTERN)
     except:
         e = sys.exc_info()[0]

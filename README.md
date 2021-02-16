@@ -79,6 +79,7 @@ Common Date Codes for Formatting:
 |`%M`|Minute|
 |`%S`|Second|
 |`%f`|Microsecond|
+
 _For more date codes please refer to https://www.w3schools.com/python/python_datetime.asp_
 
 ## Example

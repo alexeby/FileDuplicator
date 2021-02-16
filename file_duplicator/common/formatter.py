@@ -13,7 +13,7 @@ def generate_date(date_format: str = '%m/%d/%Y', start_date: str = '01/01/1970',
     return random_date_generator(date_format, start_date, end_date)
 
 
-def value(values = None):
+def value(values=None):
     if values is None:
         values = []
     return str(values[get_random_num_range(0, len(values) - 1)])
