@@ -1,12 +1,8 @@
 import configparser
-import logging
-import os
 
 # Init config parser
 parser = configparser.ConfigParser()
 parser.read('./setup/conf.ini')
-
-logger = logging.getLogger(__name__)
 
 
 class Config:

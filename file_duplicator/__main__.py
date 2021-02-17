@@ -3,7 +3,11 @@ from file_duplicator.file_handler import FileHandler
 import logging.config
 import sys
 
-logging.config.fileConfig(fname='setup/log.ini', disable_existing_loggers=False)
+try:
+    logging.config.fileConfig(fname='setup/log.ini', disable_existing_loggers=False)
+except:
+    print('Log directory does not exist. Logging has been disabled.')
+
 logger = logging.getLogger(__name__)
 
 

@@ -1,0 +1,33 @@
+Person Data Test
+First name: Deanna
+Middle Name: DeannaMorales
+Last name: Morales
+Full name: Deanna Morales
+Title: Miss
+Tax ID: 326-60-7971
+Birthdate: 1998-07-22T10:57:49.650Z
+Gender: F
+
+Address Data Test
+Street: 8458 Lakeshore Rd
+City: Austin
+State: ID
+Postal code: 78101
+Country: United States
+Home phone: (166)-409-4705
+Mobile phone: (839)-001-1480
+Email: deanna.morales@example.com
+Latitude: 48.1121
+Longitude: 158.5400
+
+Number Formatter Test
+XXX-XXX-XXXX: 348-486-3424
+My Age is 2X: My Age is 20
+
+Date Generator Test
+Default: 01/03/1978
+T format: 1979-06-02T05:27:11
+Future date: 07/29/2028
+
+Random Values Test
+YNU: YES
