@@ -6,7 +6,7 @@ such as person or address information, random numbers, etc. This was developed f
 functionality of other programs - especially if that program relies on unique information when importing.
 
 ## Installation
-This project is compatible with Python 3.6+. To install all requirements use:<br>
+This project is compatible with Python 3.6. To install all requirements use:<br>
 `pip install -r requirements.txt`
 
 On Windows, a build can be created by running `build.bat`. This uses pyinstaller to create an executable file which 
