@@ -30,35 +30,35 @@ virtual environment.
 ### Randomly Generated Person Data
 |Token|Description|
 |---|---|
-|`Person.FirstName`|First Name|
-|`Person.MiddleName`|Middle Name|
-|`Person.LastName`|Last Name|
-|`Person.FullName`|Full Name|
-|`Person.Title`|Title|
-|`Person.TaxID`|Tax ID|
-|`Person.Birthdate`|Birthdate|
-|`Person.Gender`|Gender|
+|`{Person.FirstName}`|First Name|
+|`{Person.MiddleName}`|Middle Name|
+|`{Person.LastName}`|Last Name|
+|`{Person.FullName}`|Full Name|
+|`{Person.Title}`|Title|
+|`{Person.TaxID}`|Tax ID|
+|`{Person.Birthdate}`|Birthdate|
+|`{Person.Gender}`|Gender|
 
 ### Randomly Generated Address Data
 |Token|Description|
 |---|---|
-|`Address.Street`|Street|
-|`Address.City`|City|
-|`Address.State`|State|
-|`Address.PostalCode`|Postal Code|
-|`Address.Country`|Country|
-|`Address.HomePhone`|Home Phone|
-|`Address.MobilePhone`|Mobile Phone|
-|`Address.Email`|Email Address|
-|`Address.Latitude`|Latitude|
-|`Address.Longitude`|Longitude|
+|`{Address.Street}`|Street|
+|`{Address.City}`|City|
+|`{Address.State}`|State|
+|`{Address.PostalCode}`|Postal Code|
+|`{Address.Country}`|Country|
+|`{Address.HomePhone}`|Home Phone|
+|`{Address.MobilePhone}`|Mobile Phone|
+|`{Address.Email}`|Email Address|
+|`{Address.Latitude}`|Latitude|
+|`{Address.Longitude}`|Longitude|
 
 ### Formatter Functions
 |Token Example|Description|
 |---|---|
-|`number_formatter(X_Pattern)`|Creates random numbers following X-Pattern.|
-|`generate_date(Date_Format, Start_Date, End_Date)`|Generates a random date. Default parameters are generate_date('%m/%d/%Y', '01/01/1970', 'NOW') where 'NOW' is the current datetime.|
-|`value(Value_List)`|Randomly selects a value from a list of string objects.|
+|`{number_formatter(X_Pattern)}`|Creates random numbers following X-Pattern.|
+|`{generate_date(Date_Format, Start_Date, End_Date)}`|Generates a random date. Default parameters are generate_date('%m/%d/%Y', '01/01/1970', 'NOW') where 'NOW' is the current datetime.|
+|`{value(Value_List)}`|Randomly selects a value from a list of string objects.|
 
 ### Additional Packages and Resources
 Additional supported packages:

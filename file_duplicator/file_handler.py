@@ -1,9 +1,14 @@
 import os
 import re
+import sys
+import logging
 from .common import data_handler
 from .common.constants import Constants as c
 from .api_handler import get_api_data
 from .object.object_mapper import ObjectMapper
+from .exception.exception import InvalidTokenException
+
+logger = logging.getLogger(__name__)
 
 
 class FileHandler:
@@ -41,7 +46,7 @@ class FileHandler:
         size = len(file_name_list)
         file_type = file_name_list[size-1]
         file_name = FileHandler.concat_list_to_string(file_name_list[0:size-1], '.')
-        return file_name + f'({i}).' + file_type
+        return file_name + f'_{i}.' + file_type
 
     def set_current_person(self, iteration: int):
         if self.api_results is not None:
@@ -63,8 +68,11 @@ class FileHandler:
         for result in results:
             formatted_result = result.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
             self.conditionally_populate_api_results(formatted_result)
-            replace = self.get_token_value(formatted_result, self.current_person)
-            s = re.sub(regex_pattern, replace, s, 1)
+            try:
+                replace = self.get_token_value(formatted_result, self.current_person)
+                s = re.sub(regex_pattern, replace, s, 1)
+            except Exception as e:
+                raise InvalidTokenException(result, e)
         return s
 
     def duplicate_file(self, original_file_dir: str, copy_file_dir: str, num_copies: int, regex_pattern: str):
@@ -76,9 +84,17 @@ class FileHandler:
                 self.set_current_person(i)
                 copy_file_path = copy_file_dir + self.iterate_file(original_file_name, i + 1)
                 with open(copy_file_path, 'w') as copy_file:
+                    line_number = 1
                     for line in original_file:
-                        parsed_line = self.parse_line(regex_pattern, line)
+                        try:
+                            parsed_line = self.parse_line(regex_pattern, line)
+                        except InvalidTokenException as ite:
+                            logger.error(f'{ite.token} on line {line_number} is not a recognized token. Exiting program.')
+                            logger.error(ite.additional_except)
+                            sys.exit()
                         copy_file.write(parsed_line)
+                        line_number += 1
                     copy_file.close()
                     original_file.seek(0)
+            logger.info(f'Process complete! {num_copies} copies were created in directory: {copy_file_dir}')
             original_file.close()

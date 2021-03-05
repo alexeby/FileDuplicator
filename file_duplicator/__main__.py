@@ -1,7 +1,6 @@
 from .setup.config import Config
 from file_duplicator.file_handler import FileHandler
 import logging.config
-import sys
 
 try:
     logging.config.fileConfig(fname='setup/log.ini', disable_existing_loggers=False)
@@ -18,6 +17,5 @@ def main():
     try:
         file_handler = FileHandler(Config.API_URL, Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM, Config.NUM_COPIES)
         file_handler.duplicate_file(Config.ORIGINAL_FILE_DIR, Config.COPY_FILE_DIR, Config.NUM_COPIES, Config.REGEX_PATTERN)
-    except:
-        e = sys.exc_info()[0]
-        logger.exception(e)
+    except Exception as ex:
+        logger.exception(ex)
