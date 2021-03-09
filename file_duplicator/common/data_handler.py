@@ -2,37 +2,45 @@ from .formatter import *
 import math
 import random
 from .constants import Constants as c
+from ..setup.mappings import Mappings as m
+
+
+def get_key(val, dictionary: dict):
+    for key, v in dictionary.items():
+        if val in v:
+            return key
+    return ''
 
 
 def get_person_value(tok, person):
     switcher = {
-        c.first_name: person.first_name,
-        c.middle_name: person.middle_name,
-        c.last_name: person.last_name,
-        c.full_name: person.full_name,
-        c.title: person.title,
-        c.tax_id: person.tax_id,
-        c.birth_date: person.birth_date,
-        c.gender: person.gender
+        person.first_name: m.first_name,
+        person.middle_name: m.middle_name,
+        person.last_name: m.last_name,
+        person.full_name: m.full_name,
+        person.title: m.title,
+        person.tax_id: m.tax_id,
+        person.birth_date: m.birth_date,
+        person.gender: m.gender
     }
-    return switcher.get(tok)
+    return get_key(tok, switcher)
 
 
 def get_contact_value(tok, person):
     contact = person.contact
     switcher = {
-        c.street: contact.street,
-        c.city: contact.city,
-        c.state: contact.state,
-        c.postal_code: contact.postal_code,
-        c.country: contact.country,
-        c.home_phone: contact.home_phone,
-        c.mobile_phone: contact.mobile_phone,
-        c.email: contact.email,
-        c.latitude: contact.latitude,
-        c.longitude: contact.longitude
+        contact.street: m.street,
+        contact.city: m.city,
+        contact.state: m.state,
+        contact.postal_code: m.postal_code,
+        contact.country: m.country,
+        contact.home_phone: m.home_phone,
+        contact.mobile_phone: m.mobile_phone,
+        contact.email: m.email,
+        contact.latitude: m.latitude,
+        contact.longitude: m.longitude
     }
-    return switcher.get(tok)
+    return get_key(tok, switcher)
 
 
 def process(token: str, person):

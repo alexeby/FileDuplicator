@@ -2,6 +2,8 @@ from .setup.config import Config
 from file_duplicator.file_handler import FileHandler
 from file_duplicator.validation import Validate
 import logging.config
+import os
+import glob
 
 try:
     logging.config.fileConfig(fname='setup/log.ini', disable_existing_loggers=False)
@@ -16,9 +18,17 @@ def main():
     logger.info(Config.ALL_CONFIGURATIONS)
 
     try:
+
         file_validator = Validate(Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM)
         is_valid = file_validator.validate_file(Config.ORIGINAL_FILE_DIR, Config.REGEX_PATTERN)
         unique_person_keys = file_validator.unique_person_keys
+        file_validator.validate_mappings()
+
+        # Clear out directory
+        if Config.CLEAR_COPY_PATH.upper() == 'TRUE':
+            files = glob.glob(Config.COPY_FILE_DIR+'*')
+            for f in files:
+                os.remove(f)
 
         if is_valid:
             file_handler = FileHandler(Config.API_URL, Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM,
