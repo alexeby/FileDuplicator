@@ -21,7 +21,11 @@ def get_person_value(tok, person):
         person.title: m.title,
         person.tax_id: m.tax_id,
         person.birth_date: m.birth_date,
-        person.gender: m.gender
+        person.age: m.age,
+        person.gender: m.gender,
+        person.nat: m.nat,
+        person.username: m.username,
+        person.password: m.password
     }
     return get_key(tok, switcher)
 

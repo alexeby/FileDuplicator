@@ -3,6 +3,7 @@ from .contact import Contact
 import json
 from types import SimpleNamespace
 from ..common.dict_translator import *
+from ..common.formatter import scramble_string
 
 
 class ObjectMapper:
@@ -32,13 +33,17 @@ class ObjectMapper:
         jdo = self.json_data_obj
 
         person.first_name = jdo.name.first
-        person.middle_name = jdo.name.first + jdo.name.last
+        person.middle_name = scramble_string(jdo.name.first + jdo.name.last)
         person.last_name = jdo.name.last
         person.full_name = jdo.name.first + ' ' + jdo.name.last
         person.title = jdo.name.title
         person.tax_id = jdo.id.value
         person.birth_date = jdo.dob.date
+        person.age = str(jdo.dob.age)
         person.gender = sex[jdo.gender]
+        person.nat = jdo.nat
+        person.username = jdo.login.username
+        person.password = jdo.login.password
         person.contact = self.map_contact()
         return person
 

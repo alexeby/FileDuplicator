@@ -17,3 +17,17 @@ def value(values=None):
     if values is None:
         values = []
     return str(values[get_random_num_range(0, len(values) - 1)])
+
+
+def scramble_string(s=''):
+    result = ''
+    word_list = [*s]
+
+    for i in range(len(word_list)):
+        size = len(word_list)
+        n = get_random_num_range(0,size)-1
+        result += word_list[n]
+        if size > 0:
+            word_list.pop(n)
+
+    return result

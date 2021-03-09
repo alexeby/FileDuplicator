@@ -1,0 +1,64 @@
+Person Data Test
+First name: Patrick
+Middle Name: sittrCurcPika
+Last name: Curtis
+Full name: Patrick Curtis
+Title: Mr
+Tax ID: 481-65-0085
+Birthdate: 1995-06-16T04:46:51.799Z
+Age: 26
+Gender: M
+Username: happyfrog501
+Password: turbo1
+
+Address Data Test
+Street: 5256 W Gray St
+City: Detroit
+State: ME
+Postal code: 42606
+Country: United States
+Home phone: (143)-325-0167
+Mobile phone: (205)-954-5120
+Email: patrick.curtis@example.com
+Latitude: 56.4366
+Longitude: -127.5147
+
+Another Person Data Test
+First name: Wilma
+Middle Name: uerWHilntam
+Last name: Hunter
+Full name: Wilma Hunter
+Title: Mrs
+Tax ID: 502-33-3148
+Birthdate: 1976-12-15T06:11:44.191Z
+Age: 45
+Gender: F
+Username: lazybird139
+Password: deacon
+
+Another Address Data Test
+Street: 7266 Depaul Dr
+City: Pasadena
+State: CT
+Postal code: 30570
+Country: United States
+Home phone: (337)-833-1087
+Mobile phone: (077)-580-0267
+Email: wilma.hunter@example.com
+Latitude: -83.2961
+Longitude: -68.0097
+
+Number Formatter Test
+XXX-XXX-XXXX: 318-654-4933
+My Age is 2X: My Age is 21
+
+Date Generator Test
+Default: 12/03/1984
+T format: 2008-02-09T04:06:21
+Future date: 01/18/2029
+
+Random Values Test
+YNU: YES
+
+String Scrambler Test
+Password: srPswoad

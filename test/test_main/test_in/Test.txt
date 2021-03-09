@@ -6,7 +6,10 @@ Full name: {Person.FullName}
 Title: {Person.Title}
 Tax ID: {Person.TaxId}
 Birthdate: {Person.Birthdate}
+Age: {Person.Age}
 Gender: {Person.Gender}
+Username: {Person.Username}
+Password: {Person.Password}
 
 Address Data Test
 Street: {Address.Street}
@@ -20,6 +23,31 @@ Email: {Address.Email}
 Latitude: {Address.Latitude}
 Longitude: {Address.Longitude}
 
+Another Person Data Test
+First name: {Person2.FirstName}
+Middle Name: {Person2.MiddleName}
+Last name: {Person2.LastName}
+Full name: {Person2.FullName}
+Title: {Person2.Title}
+Tax ID: {Person2.TaxId}
+Birthdate: {Person2.Birthdate}
+Age: {Person2.Age}
+Gender: {Person2.Gender}
+Username: {Person2.Username}
+Password: {Person2.Password}
+
+Another Address Data Test
+Street: {Address2.Street}
+City: {Address2.City}
+State: {Address2.State}
+Postal code: {Address2.Zip}
+Country: {Address2.Country}
+Home phone: {Address2.HomePhone}
+Mobile phone: {Address2.MobilePhone}
+Email: {Address2.Email}
+Latitude: {Address2.Latitude}
+Longitude: {Address2.Longitude}
+
 Number Formatter Test
 XXX-XXX-XXXX: {number_formatter('XXX-XXX-XXXX')}
 My Age is 2X: {number_formatter('My Age is 2X')}
@@ -31,3 +59,6 @@ Future date: {generate_date('%m/%d/%Y', 'NOW', '01/01/2030')}
 
 Random Values Test
 YNU: {value(['YES', 'NO', 'UNK'])}
+
+String Scrambler Test
+Password: {scramble_string('Password')}

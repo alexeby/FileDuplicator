@@ -1,0 +1,64 @@
+Person Data Test
+First name: Ken
+Middle Name: yKphrnuMe
+Last name: Murphy
+Full name: Ken Murphy
+Title: Mr
+Tax ID: 261-28-4720
+Birthdate: 1958-03-04T22:24:35.810Z
+Age: 63
+Gender: M
+Username: tinyswan384
+Password: fidelio
+
+Address Data Test
+Street: 5107 E Pecan St
+City: Frisco
+State: PA
+Postal code: 88104
+Country: United States
+Home phone: (652)-005-2416
+Mobile phone: (353)-872-8226
+Email: ken.murphy@example.com
+Latitude: 63.9080
+Longitude: 156.6500
+
+Another Person Data Test
+First name: Theodore
+Middle Name: usnooerTdHodhe
+Last name: Hudson
+Full name: Theodore Hudson
+Title: Mr
+Tax ID: 483-40-6649
+Birthdate: 1995-11-17T13:46:18.553Z
+Age: 26
+Gender: M
+Username: tinybird646
+Password: 1024
+
+Another Address Data Test
+Street: 3219 Smokey Ln
+City: San Diego
+State: PA
+Postal code: 25879
+Country: United States
+Home phone: (700)-388-9681
+Mobile phone: (442)-129-3563
+Email: theodore.hudson@example.com
+Latitude: 31.0974
+Longitude: 75.1564
+
+Number Formatter Test
+XXX-XXX-XXXX: 826-697-0284
+My Age is 2X: My Age is 27
+
+Date Generator Test
+Default: 09/11/1971
+T format: 1976-11-22T09:51:13
+Future date: 12/29/2021
+
+Random Values Test
+YNU: UNK
+
+String Scrambler Test
+Password: Psrsawod

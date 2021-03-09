@@ -33,13 +33,22 @@ class Mappings:
     
     birth_date = parser.get(config_section, 'birth_date').upper().split('|')
     MAPPINGS.extend(birth_date)
-    
-    death_date = parser.get(config_section, 'death_date').upper().split('|')
-    MAPPINGS.extend(death_date)
-    
+
+    age = parser.get(config_section, 'age').upper().split('|')
+    MAPPINGS.extend(age)
+
     gender = parser.get(config_section, 'gender').upper().split('|')
     MAPPINGS.extend(gender)
-    
+
+    nat = parser.get(config_section, 'nat').upper().split('|')
+    MAPPINGS.extend(nat)
+
+    username = parser.get(config_section, 'username').upper().split('|')
+    MAPPINGS.extend(username)
+
+    password = parser.get(config_section, 'password').upper().split('|')
+    MAPPINGS.extend(password)
+
     street = parser.get(config_section, 'street').upper().split('|')
     MAPPINGS.extend(street)
     
