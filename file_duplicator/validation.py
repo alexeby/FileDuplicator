@@ -2,7 +2,6 @@ from .exception.exception import InvalidTokenException, NonUniqueMappingExceptio
 from .object.person import Person
 from .common.constants import Constants as c
 import logging
-import re
 from .common import file_utils
 from .setup.mappings import Mappings as m
 
@@ -10,9 +9,10 @@ logger = logging.getLogger(__name__)
 
 
 class Validate:
-    def __init__(self, left_token_trim, right_token_trim):
+    def __init__(self, left_token_trim, right_token_trim, all_unique_persons):
         self.left_token_trim = left_token_trim
         self.right_token_trim = right_token_trim
+        self.all_unique_persons = all_unique_persons
 
         self.current_person = Person()
         self.unique_person_keys = set()
@@ -36,7 +36,11 @@ class Validate:
             value = pair[1]
             if value not in m.MAPPINGS:
                 raise InvalidTokenException(value)
-            self.unique_person_keys.add(key)
+            if self.all_unique_persons.upper() == 'TRUE':
+                number_keys = len(self.unique_person_keys)
+                self.unique_person_keys.add(str(number_keys))
+            else:
+                self.unique_person_keys.add(key)
 
     def parse_nested_tokens(self, s: str):
         right_token_index = 0
@@ -57,7 +61,7 @@ class Validate:
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         self.retrieve_unique_person_keys(formatted_result)
         replace = file_utils.get_token_value(formatted_result, self.current_person)
-        s = s.replace(token, replace)
+        s = s.replace(token, replace, 1)
         return self.parse_nested_tokens(s)
 
     def validate_file(self, original_file_dir: str):

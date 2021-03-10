@@ -1,4 +1,3 @@
-import re
 import sys
 import logging
 from .object.object_mapper import ObjectMapper
@@ -13,14 +12,16 @@ logger = logging.getLogger(__name__)
 
 class FileHandler:
 
-    def __init__(self, api_url, left_token_trim, right_token_trim, num_copies, unique_person_keys):
+    def __init__(self, api_url, left_token_trim, right_token_trim, num_copies, unique_person_keys, all_unique_persons):
         self.api_url = api_url
         self.left_token_trim = left_token_trim
         self.right_token_trim = right_token_trim
         self.num_copies = num_copies
         self.unique_person_keys: set = unique_person_keys
+        self.all_unique_persons = all_unique_persons
 
         self.unique_person_map = self.populate_unique_person_map()
+        self.current_person_object_tally = 0
 
     def populate_unique_person_map(self):
         num_unique_person_keys = len(self.unique_person_keys)
@@ -40,7 +41,11 @@ class FileHandler:
 
     def get_person(self, token, i: int):
         if token.upper().startswith(c.person) or token.upper().startswith(c.address):
-            key = token.upper().replace(c.person, '').replace(c.address, '').split('.')[0]
+            if self.all_unique_persons.upper() == 'TRUE':
+                key = str(self.current_person_object_tally)
+                self.current_person_object_tally += 1
+            else:
+                key = token.upper().replace(c.person, '').replace(c.address, '').split('.')[0]
             return self.unique_person_map[key][i]
 
     def parse_nested_tokens(self, s: str, file_num: int):
@@ -62,7 +67,7 @@ class FileHandler:
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         person = self.get_person(formatted_result, file_num)
         replace = file_utils.get_token_value(formatted_result, person)
-        s = s.replace(token, replace)
+        s = s.replace(token, replace, 1)
         return self.parse_nested_tokens(s, file_num)
 
     def duplicate_file(self, original_file_dir: str, copy_file_dir: str):
@@ -85,5 +90,6 @@ class FileHandler:
                         line_number += 1
                     copy_file.close()
                     original_file.seek(0)
+                self.current_person_object_tally = 0
             logger.info(f'Process complete! {self.num_copies} copies were created in directory: {copy_file_dir}')
             original_file.close()

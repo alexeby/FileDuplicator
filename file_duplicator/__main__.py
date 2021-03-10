@@ -19,7 +19,7 @@ def main():
 
     try:
 
-        file_validator = Validate(Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM)
+        file_validator = Validate(Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM, Config.ALL_UNIQUE_PERSONS)
         is_valid = file_validator.validate_file(Config.ORIGINAL_FILE_DIR)
         unique_person_keys = file_validator.unique_person_keys
         file_validator.validate_mappings()
@@ -32,7 +32,7 @@ def main():
 
         if is_valid:
             file_handler = FileHandler(Config.API_URL, Config.LEFT_TOKEN_TRIM, Config.RIGHT_TOKEN_TRIM,
-                                       Config.NUM_COPIES, unique_person_keys)
+                                       Config.NUM_COPIES, unique_person_keys, Config.ALL_UNIQUE_PERSONS)
             file_handler.duplicate_file(Config.ORIGINAL_FILE_DIR, Config.COPY_FILE_DIR)
         else:
             logger.error('Exiting program because file is invalid.')

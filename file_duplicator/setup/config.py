@@ -14,6 +14,7 @@ class Config:
     LEFT_TOKEN_TRIM = parser.get(config_section, 'left_token_trim')
     RIGHT_TOKEN_TRIM = parser.get(config_section, 'right_token_trim')
     CLEAR_COPY_PATH = parser.get(config_section, 'clear_copy_path')
+    ALL_UNIQUE_PERSONS = parser.get(config_section, 'all_unique_persons')
 
     ALL_CONFIGURATIONS = [ORIGINAL_FILE_DIR, COPY_FILE_DIR, NUM_COPIES, API_URL,
-                          LEFT_TOKEN_TRIM, RIGHT_TOKEN_TRIM, CLEAR_COPY_PATH]
+                          LEFT_TOKEN_TRIM, RIGHT_TOKEN_TRIM, CLEAR_COPY_PATH, ALL_UNIQUE_PERSONS]
