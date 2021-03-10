@@ -10,11 +10,10 @@ class Config:
     ORIGINAL_FILE_DIR = parser.get(config_section, 'original_file_dir')
     COPY_FILE_DIR = parser.get(config_section, 'copy_file_dir')
     NUM_COPIES = int(parser.get(config_section, 'num_copies'))
-    REGEX_PATTERN = parser.get(config_section, 'regex_pattern')
     API_URL = parser.get(config_section, 'api_url')
     LEFT_TOKEN_TRIM = parser.get(config_section, 'left_token_trim')
     RIGHT_TOKEN_TRIM = parser.get(config_section, 'right_token_trim')
     CLEAR_COPY_PATH = parser.get(config_section, 'clear_copy_path')
 
-    ALL_CONFIGURATIONS = [ORIGINAL_FILE_DIR, COPY_FILE_DIR, NUM_COPIES, REGEX_PATTERN, API_URL,
+    ALL_CONFIGURATIONS = [ORIGINAL_FILE_DIR, COPY_FILE_DIR, NUM_COPIES, API_URL,
                           LEFT_TOKEN_TRIM, RIGHT_TOKEN_TRIM, CLEAR_COPY_PATH]

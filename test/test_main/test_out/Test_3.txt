@@ -1,64 +1,69 @@
 Person Data Test
-First name: Amber
-Middle Name: rbMArpmuyhe
-Last name: Murphy
-Full name: Amber Murphy
-Title: Miss
-Tax ID: 359-86-3807
-Birthdate: 1968-07-12T03:11:08.051Z
-Age: 53
+First name: Charlotte
+Middle Name: CRotesratelhhod
+Last name: Rhodes
+Full name: Charlotte Rhodes
+Title: Ms
+Tax ID: 690-80-1802
+Birthdate: 1983-04-07T00:06:44.565Z
+Age: 38
 Gender: F
-Username: bigduck664
-Password: passwor
+Username: organicgorilla291
+Password: herbie
 
 Address Data Test
-Street: 4278 Karen Dr
-City: Utica
-State: VT
-Postal code: 36421
+Street: 5959 Timber Wolf Trail
+City: Davenport
+State: IA
+Postal code: 15864
 Country: United States
-Home phone: (513)-572-8936
-Mobile phone: (847)-534-1381
-Email: amber.murphy@example.com
-Latitude: 23.1219
-Longitude: -2.8202
+Home phone: (373)-532-5806
+Mobile phone: (514)-348-2477
+Email: charlotte.rhodes@example.com
+Latitude: 86.8135
+Longitude: -124.8639
 
 Another Person Data Test
-First name: Arianna
-Middle Name: nSntAnuiorata
-Last name: Sutton
-Full name: Arianna Sutton
-Title: Mrs
-Tax ID: 515-13-8519
-Birthdate: 1953-12-14T11:48:11.997Z
-Age: 68
-Gender: F
-Username: sadmouse659
-Password: gangbanged
+First name: Ramon
+Middle Name: masMewtRthano
+Last name: Matthews
+Full name: Ramon Matthews
+Title: Mr
+Tax ID: 504-44-7206
+Birthdate: 1983-10-28T11:28:08.136Z
+Age: 38
+Gender: M
+Username: happyfish245
+Password: isaiah
 
 Another Address Data Test
-Street: 7295 Locust Rd
-City: Garden Grove
-State: IN
-Postal code: 58228
+Street: 2712 Mcclellan Rd
+City: Fremont
+State: MA
+Postal code: 53427
 Country: United States
-Home phone: (239)-769-6351
-Mobile phone: (192)-480-6301
-Email: arianna.sutton@example.com
-Latitude: 35.9574
-Longitude: -157.7874
+Home phone: (415)-065-7548
+Mobile phone: (632)-976-1926
+Email: ramon.matthews@example.com
+Latitude: -0.4377
+Longitude: 62.5201
 
 Number Formatter Test
-XXX-XXX-XXXX: 005-795-2286
-My Age is 2X: My Age is 26
+XXX-XXX-XXXX: 127-263-2237
+My Age is 2X: My Age is 21
 
 Date Generator Test
-Default: 05/25/1974
-T format: 1994-04-06T05:44:33
-Future date: 10/28/2027
+Default: 06/13/2015
+T format: 1986-04-07T17:22:21
+Future date: 04/20/2028
 
 Random Values Test
-YNU: YES
+YNU: UNK
 
 String Scrambler Test
-Password: warPsdos
+Password: drPsowas
+
+Nested Token Test
+Number Formatter and Scramble String: 3902-1765-58
+Reformat Date: 1983/04/07
+Reformat Date with inline token: Ramon was born on 10/28/1983
