@@ -25,6 +25,14 @@ def value(values=None):
     return str(values[get_random_num_range(0, len(values) - 1)])
 
 
+def generate_string(length=0):
+    result = ''
+    characters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    for i in range(length):
+        result += characters[get_random_num_range(0, 25)]
+    return result
+
+
 def scramble_string(s=''):
     result = ''
     word_list = [*s]
