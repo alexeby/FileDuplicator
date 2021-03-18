@@ -2,9 +2,11 @@ import sys
 import logging
 from .object.object_mapper import ObjectMapper
 from .exception.exception import InvalidTokenException
+from .common import data_handler
 from .common import file_utils
 from .api_handler import get_api_data
 from .common.constants import Constants as c
+from .setup.mappings import Mappings as m
 
 
 logger = logging.getLogger(__name__)
@@ -12,47 +14,72 @@ logger = logging.getLogger(__name__)
 
 class FileHandler:
 
-    def __init__(self, api_url, left_token_trim, right_token_trim, num_copies, unique_person_keys, all_unique_persons):
+    def __init__(self, api_url, left_token_trim, right_token_trim, num_copies, unique_person_keys, all_unique_persons,
+                 num_records_per_file, mapping_tokens):
         self.api_url = api_url
         self.left_token_trim = left_token_trim
         self.right_token_trim = right_token_trim
         self.num_copies = num_copies
         self.unique_person_keys: set = unique_person_keys
         self.all_unique_persons = all_unique_persons
+        self.num_records_per_file = len(unique_person_keys) if len(unique_person_keys) > 0 else num_records_per_file
+        self.mapping_tokens = dict.fromkeys(mapping_tokens, 0)
 
-        self.unique_person_map = self.populate_unique_person_map()
-        self.current_person_object_tally = 0
+        self.person_list = self.populate_person_list()
+        self.unique_person_map = self.populate_multiple_person_map() if self.all_unique_persons.upper() != 'TRUE' \
+            else self.populate_all_unique_map()
 
-    def populate_unique_person_map(self):
-        num_unique_person_keys = len(self.unique_person_keys)
-        if num_unique_person_keys > 0:
-            num_expected_results = num_unique_person_keys * self.num_copies
-            api_results: list = get_api_data(self.api_url+str(num_expected_results))
-            unique_person_map = {}
+    def populate_person_list(self):
+        number_persons = self.num_records_per_file * self.num_copies
+        api_results: list = get_api_data(self.api_url + str(number_persons))
+        person_list = []
+        for result in api_results:
+            person_list.append(ObjectMapper(result).map_person())
+        return person_list
+
+    def populate_multiple_person_map(self):
+        person_list = self.person_list
+        unique_person_map = {k: [] for k in self.unique_person_keys}
+        i = 0
+        while i < len(person_list):
             for key in self.unique_person_keys:
-                # Initialize person map
-                unique_person_map[key] = []
-            for key in self.unique_person_keys:
-                for i in range(int(num_expected_results/num_unique_person_keys)):
-                    # Populate person map with api result information
-                    unique_person_map[key].append(ObjectMapper(api_results.pop()).map_person())
+                unique_person_map[key].append(i)
+                i += 1
+        return unique_person_map
 
-            return unique_person_map
+    def populate_all_unique_map(self):
+        number_persons = self.num_records_per_file * self.num_copies
+        mapping_list = []
+        i = 0
+        while i < number_persons:
+            iter_list = []
+            for j in range(self.num_copies):
+                iter_list.append(i)
+                i += 1
+            mapping_list.append(iter_list)
+        return mapping_list
 
     def get_person(self, token, i: int):
-        if token.upper().startswith(c.person) or token.upper().startswith(c.address):
+        if token.upper().startswith(c.PERSON) or token.upper().startswith(c.ADDRESS):
+            pair = token.upper().replace(c.PERSON, '').replace(c.ADDRESS, '').split('.')
             if self.all_unique_persons.upper() == 'TRUE':
-                key = str(self.current_person_object_tally)
-                self.current_person_object_tally += 1
+                value = pair[1]
+                mapping_value = file_utils.get_key(value, m.mapping_dictionary)
+                current_file_iter = self.mapping_tokens[mapping_value]
+                person_index = self.unique_person_map[current_file_iter][i]
+                self.mapping_tokens[mapping_value] += 1
             else:
-                key = token.upper().replace(c.person, '').replace(c.address, '').split('.')[0]
-            return self.unique_person_map[key][i]
+                key = pair[0]
+                person_index = self.unique_person_map[key][i]
+            return self.person_list[person_index]
 
     def parse_nested_tokens(self, s: str, file_num: int):
         right_token_index = 0
         left_token_index = 0
         iteration = 0
 
+        # TODO ensure that total count of left_token_trims = right_token_trims
+        # TODO support tokens greater than 1 character
         for i in s:
             if i == '{':
                 left_token_index = iteration
@@ -66,7 +93,7 @@ class FileHandler:
         token = s[left_token_index:right_token_index + 1]
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         person = self.get_person(formatted_result, file_num)
-        replace = file_utils.get_token_value(formatted_result, person)
+        replace = data_handler.process(formatted_result, person)
         s = s.replace(token, replace, 1)
         return self.parse_nested_tokens(s, file_num)
 
@@ -90,6 +117,7 @@ class FileHandler:
                         line_number += 1
                     copy_file.close()
                     original_file.seek(0)
-                self.current_person_object_tally = 0
+
+                self.mapping_tokens = dict.fromkeys(self.mapping_tokens, 0)
             logger.info(f'Process complete! {self.num_copies} copies were created in directory: {copy_file_dir}')
             original_file.close()

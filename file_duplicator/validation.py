@@ -3,6 +3,7 @@ from .object.person import Person
 from .common.constants import Constants as c
 import logging
 from .common import file_utils
+from .common import data_handler
 from .setup.mappings import Mappings as m
 
 logger = logging.getLogger(__name__)
@@ -16,6 +17,8 @@ class Validate:
 
         self.current_person = Person()
         self.unique_person_keys = set()
+        self.mapping_tokens = {}
+        self.num_records_per_file = 0
 
     # Validate mappings
     @staticmethod
@@ -29,16 +32,26 @@ class Validate:
         logger.info('Mapping validation complete. All mappings are unique.')
         return m.MAPPINGS
 
+    def handle_all_unique_persons_token(self, value):
+        token_dict = self.mapping_tokens
+        value = file_utils.get_key(value, m.mapping_dictionary)
+        if value in token_dict:
+            token_dict_value = token_dict[value] + 1
+            self.mapping_tokens[value] = token_dict_value
+            if token_dict_value > self.num_records_per_file:
+                self.num_records_per_file = self.mapping_tokens[value]
+        else:
+            self.mapping_tokens[value] = 1
+
     def retrieve_unique_person_keys(self, token: str):
-        if token.upper().startswith(c.person) or token.upper().startswith(c.address):
-            pair = token.upper().replace(c.person, '').replace(c.address, '').split('.')
+        if token.upper().startswith(c.PERSON) or token.upper().startswith(c.ADDRESS):
+            pair = token.upper().replace(c.PERSON, '').replace(c.ADDRESS, '').split('.')
             key = pair[0]
             value = pair[1]
             if value not in m.MAPPINGS:
                 raise InvalidTokenException(value)
             if self.all_unique_persons.upper() == 'TRUE':
-                number_keys = len(self.unique_person_keys)
-                self.unique_person_keys.add(str(number_keys))
+                self.handle_all_unique_persons_token(value)
             else:
                 self.unique_person_keys.add(key)
 
@@ -47,6 +60,8 @@ class Validate:
         left_token_index = 0
         iteration = 0
 
+        # TODO ensure that total count of left_token_trims = right_token_trims
+        # TODO support tokens greater than 1 character
         for i in s:
             if i == self.left_token_trim:
                 left_token_index = iteration
@@ -60,7 +75,7 @@ class Validate:
         token = s[left_token_index:right_token_index + 1]
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         self.retrieve_unique_person_keys(formatted_result)
-        replace = file_utils.get_token_value(formatted_result, self.current_person)
+        replace = data_handler.process(formatted_result, self.current_person)
         s = s.replace(token, replace, 1)
         return self.parse_nested_tokens(s)
 
