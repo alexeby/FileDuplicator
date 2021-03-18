@@ -25,3 +25,28 @@ class TestConcatListToString(TestCase):
         expected = 'this1atest'
         self.assertEqual(result, expected)
 
+
+class TestParseStringForToken(TestCase):
+    def test_no_tokens(self):
+        result = file_utils.parse_string_for_token('My name is Person One', '{', '}')
+        self.assertIsNone(result)
+
+    def test_one_token(self):
+        result = file_utils.parse_string_for_token('My name is {FirstName} One', '{', '}')
+        expected = '{FirstName}'
+        self.assertEqual(result, expected)
+
+    def test_two_tokens(self):
+        result = file_utils.parse_string_for_token('My name is {FirstName} {LastName}', '{', '}')
+        expected = '{LastName}'
+        self.assertEqual(result, expected)
+
+    def test_nested_tokens(self):
+        result = file_utils.parse_string_for_token('My name is {FirstName{MiddleName} nice to meet you}', '{', '}')
+        expected = '{MiddleName}'
+        self.assertEqual(result, expected)
+
+    def test_empty_token(self):
+        result = file_utils.parse_string_for_token('My name is {FirstName{Middle{}Name} nice to meet you}', '{', '}')
+        expected = '{}'
+        self.assertEqual(result, expected)

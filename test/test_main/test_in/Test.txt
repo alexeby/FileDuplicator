@@ -8,6 +8,7 @@ Tax ID: {Person.TaxId}
 Birthdate: {Person.Birthdate}
 Age: {Person.Age}
 Gender: {Person.Gender}
+Nationality: {Person.Nat}
 Username: {Person.Username}
 Password: {Person.Password}
 
@@ -33,6 +34,7 @@ Tax ID: {Person2.TaxId}
 Birthdate: {Person2.Birthdate}
 Age: {Person2.Age}
 Gender: {Person2.Gender}
+Nationality: {Person.Nat}
 Username: {Person2.Username}
 Password: {Person2.Password}
 
@@ -62,6 +64,9 @@ YNU: {value(['YES', 'NO', 'UNK'])}
 
 String Scrambler Test
 Password: {scramble_string('Password')}
+
+String Generator Test
+10 Characters long: {generate_string(10)}
 
 Nested Token Test
 Number Formatter and Scramble String: {number_formatter('{scramble_string('XXX-XXX-XXXX')}')}
