@@ -1,0 +1,74 @@
+Person Data Test
+First name: Anna
+Middle Name: PraonsntAaetn
+Last name: Patterson
+Full name: Anna Patterson
+Title: Miss
+Tax ID: 704-99-2852
+Birthdate: 1986-08-18T06:34:03.890Z
+Age: 35
+Gender: F
+Nationality: US
+Username: heavyrabbit741
+Password: 1214
+
+Address Data Test
+Street: 7310 Elgin St
+City: West Valley City
+State: NY
+Postal code: 15186
+Country: United States
+Home phone: (703)-161-8052
+Mobile phone: (148)-499-5273
+Email: anna.patterson@example.com
+Latitude: -20.4768
+Longitude: -107.2282
+
+Another Person Data Test
+First name: Bryan
+Middle Name: raoiBmainWslyln
+Last name: Williamson
+Full name: Bryan Williamson
+Title: Mr
+Tax ID: 429-49-9520
+Birthdate: 1966-02-04T10:22:10.241Z
+Age: 55
+Gender: M
+Nationality: US
+Username: ticklishgorilla222
+Password: chelsea
+
+Another Address Data Test
+Street: 8963 Crockett St
+City: Davenport
+State: MO
+Postal code: 19150
+Country: United States
+Home phone: (280)-921-1618
+Mobile phone: (043)-030-0667
+Email: bryan.williamson@example.com
+Latitude: -50.9100
+Longitude: 7.7747
+
+Number Formatter Test
+XXX-XXX-XXXX: 538-940-4378
+My Age is 2X: My Age is 25
+
+Date Generator Test
+Default: 04/13/1997
+T format: 2018-03-18T03:33:52
+Future date: 12/11/2024
+
+Random Values Test
+YNU: UNK
+
+String Scrambler Test
+Password: Pwarsdos
+
+String Generator Test
+10 Characters long: zgawoqmhcn
+
+Nested Token Test
+Number Formatter and Scramble String: 9-50-2250042
+Reformat Date: 1974/12/10
+Reformat Date with inline token: Samuel was born on 04/14/1945

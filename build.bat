@@ -6,5 +6,7 @@ rmdir /s /q dist ^
  && mkdir dist\out\ ^
  && mkdir dist\setup\ ^
  && mkdir dist\log\ ^
+ && copy run.bat dist ^
  && copy setup\conf.ini dist\setup ^
- && copy setup\log.ini dist\setup
+ && copy setup\log.ini dist\setup ^
+ && copy setup\mappings.ini dist\setup

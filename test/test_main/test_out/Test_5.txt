@@ -1,0 +1,74 @@
+Person Data Test
+First name: Rita
+Middle Name: siltMlaiR
+Last name: Mills
+Full name: Rita Mills
+Title: Miss
+Tax ID: 765-92-9516
+Birthdate: 1965-10-09T03:45:40.236Z
+Age: 56
+Gender: F
+Nationality: US
+Username: organicbear428
+Password: iiiiiii
+
+Address Data Test
+Street: 1701 Parker Rd
+City: Sterling Heights
+State: NJ
+Postal code: 23432
+Country: United States
+Home phone: (722)-154-1447
+Mobile phone: (456)-589-4023
+Email: rita.mills@example.com
+Latitude: 18.7593
+Longitude: -4.1285
+
+Another Person Data Test
+First name: Carmen
+Middle Name: atetncrCoSm
+Last name: Scott
+Full name: Carmen Scott
+Title: Mrs
+Tax ID: 821-53-9759
+Birthdate: 1945-10-05T18:19:22.595Z
+Age: 76
+Gender: F
+Nationality: US
+Username: tinygoose339
+Password: hampton
+
+Another Address Data Test
+Street: 9301 College St
+City: St. Louis
+State: NV
+Postal code: 40042
+Country: United States
+Home phone: (820)-373-8438
+Mobile phone: (966)-437-5752
+Email: carmen.scott@example.com
+Latitude: -37.0370
+Longitude: 98.3310
+
+Number Formatter Test
+XXX-XXX-XXXX: 162-346-1192
+My Age is 2X: My Age is 28
+
+Date Generator Test
+Default: 09/01/2001
+T format: 1986-04-14T04:09:53
+Future date: 07/18/2028
+
+Random Values Test
+YNU: YES
+
+String Scrambler Test
+Password: Pwsdrosa
+
+String Generator Test
+10 Characters long: heqmvwmvmi
+
+Nested Token Test
+Number Formatter and Scramble String: 91-9-6983736
+Reformat Date: 1963/01/04
+Reformat Date with inline token: Joel was born on 03/01/1947
