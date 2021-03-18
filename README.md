@@ -74,11 +74,11 @@ Note that these mappings must be unique and are not case-sensitive.
 ### Formatter Functions
 |Token Example|Description|
 |---|---|
-|`{number_formatter(X_Pattern)}`|Creates random numbers following X-Pattern.|
-|`{generate_date(Date_Format, Start_Date, End_Date)}`|Generates a random date. Default parameters are generate_date('%m/%d/%Y', '01/01/1970', 'NOW') where 'NOW' is the current datetime.|
-|`{value(Value_List)}`|Randomly selects a value from a list of string objects.|
+|`{number_formatter(x_pattern)}`|Creates random numbers following X-Pattern.|
+|`{generate_date(date_format, start_date, end_date)}`|Generates a random date. Default parameters are generate_date('%m/%d/%Y', '01/01/1970', 'NOW') where 'NOW' is the current datetime.|
+|`{value(value_list)}`|Randomly selects a value from a list of string objects.|
 |`{date_formatter(date, original_format, changed_format)}`|Takes a date with that date's format, then changes that date to the specified format.|
-|`{scramble_string(s)}`|Scrambles the characters in a string randomly.|
+|`{scramble_string(string)}`|Scrambles the characters in a string randomly.|
 |`{generate_string(length)}`|Generates a string from every letter of the alphabet. Takes a number parameter to specify length of string.|
 
 ### Additional Packages and Resources
@@ -289,4 +289,4 @@ Reformat Date with inline token: Leroy was born on 05/17/1984
 |1.0.0|02/17/2021|+ Initial release|
 |1.0.1|02/04/2021|+ Fixed issue where application would not run on Windows 10 due to Windows Defender and Pyinstaller incompatibility|
 |1.0.2|03/05/2021|+ Added better error handling for invalid tokens<br>+ Improved naming convention of copied files|
-|1.1.0|03/11/2021|+ Added file pre-execution file validation<br>+ Added support for nested tokens<br>+ Added support for multiple unique persons and addresses to be generated per file<br>+ Added `clear_copy_path` configuration, when `True` the file output directory will have its contents deleted<br>+ Added support for custom mapping values specified in `mappings.ini`<br>+ Added additional person mappings from API including `Username` and `Password`<br>+ Added date_formatter, generate_string, and scramble_string functions<br>+ Added ability to generate all person and address tokens uniquely - specified when `all_unique_persons` configuration is `True`. This will cause multiple uses of `{Person.FirstName}` to generate a different name rather than the same as when `all_unique_persons` is `False`<br><br>- Removed `regex_pattern` configuration. Nested token support removed token validation with regex|
+|2.0.0|03/18/2021|+ Added file pre-execution file validation<br>+ Added support for nested tokens<br>+ Added support for multiple unique persons and addresses to be generated per file<br>+ Added `clear_copy_path` configuration, when `True` the file output directory will have its contents deleted<br>+ Added support for custom mapping values specified in `mappings.ini`<br>+ Added additional person mappings from API including `Username` and `Password`<br>+ Added date_formatter, generate_string, and scramble_string functions<br>+ Added ability to generate all person and address tokens uniquely - specified when `all_unique_persons` configuration is `True`. This will cause multiple uses of `{Person.FirstName}` to generate a different name rather than the same as when `all_unique_persons` is `False`<br><br>- Removed `regex_pattern` configuration. Nested token support removed token validation with regex|
