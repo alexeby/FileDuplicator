@@ -23,6 +23,17 @@ def iterate_file(file: str, i: int):
     return file_name + f'_{i}.' + file_type
 
 
+def parse_string_for_token(s: str, left_token: str, right_token: str):
+    left_token_index = s.rfind(left_token)
+    right_token_index = s.find(right_token, left_token_index)
+
+    if right_token_index == -1 and left_token_index == -1:
+        return None
+
+    token = s[left_token_index:right_token_index + len(right_token)]
+    return token
+
+
 def get_key(val, dictionary: dict):
     for key, v in dictionary.items():
         if val in v:

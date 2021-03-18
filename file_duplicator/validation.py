@@ -1,4 +1,4 @@
-from .exception.exception import InvalidTokenException, NonUniqueMappingException
+from .exception.exception import InvalidTokenException, NonUniqueMappingException, TokenCountUnequalException
 from .object.person import Person
 from .common.constants import Constants as c
 import logging
@@ -42,6 +42,8 @@ class Validate:
                 self.num_records_per_file = self.mapping_tokens[value]
         else:
             self.mapping_tokens[value] = 1
+            if self.num_records_per_file == 0:
+                self.num_records_per_file = 1
 
     def retrieve_unique_person_keys(self, token: str):
         if token.upper().startswith(c.PERSON) or token.upper().startswith(c.ADDRESS):
@@ -55,24 +57,17 @@ class Validate:
             else:
                 self.unique_person_keys.add(key)
 
+    def validate_token_count(self, line: str):
+        count_left_token = line.count(self.left_token_trim)
+        count_right_token = line.count(self.right_token_trim)
+        if count_left_token != count_right_token:
+            raise TokenCountUnequalException(count_left_token, count_right_token,
+                                             "Left and right token occurrences must be equal")
+
     def parse_nested_tokens(self, s: str):
-        right_token_index = 0
-        left_token_index = 0
-        iteration = 0
-
-        # TODO ensure that total count of left_token_trims = right_token_trims
-        # TODO support tokens greater than 1 character
-        for i in s:
-            if i == self.left_token_trim:
-                left_token_index = iteration
-            if i == self.right_token_trim:
-                right_token_index = iteration
-                break
-            iteration += 1
-        if right_token_index == 0 and left_token_index == 0:
+        token = file_utils.parse_string_for_token(s, self.left_token_trim, self.right_token_trim)
+        if token is None:
             return s
-
-        token = s[left_token_index:right_token_index + 1]
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         self.retrieve_unique_person_keys(formatted_result)
         replace = data_handler.process(formatted_result, self.current_person)
@@ -88,10 +83,15 @@ class Validate:
             logger.info('Validating file.')
             for line in original_file:
                 try:
+                    self.validate_token_count(line)
                     self.parse_nested_tokens(line)
                 except InvalidTokenException as ite:
                     logger.error(f'{ite.token} on line {line_number} is not a recognized token. Exiting program.')
                     logger.error(ite.additional_except)
+                    return False
+                except TokenCountUnequalException as tcue:
+                    logger.error(f'Left and right token counts on line {line_number} are not equal. Exiting program.')
+                    logger.error(tcue.additional_except)
                     return False
                 line_number += 1
             logger.info('File passed validation.')

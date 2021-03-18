@@ -74,23 +74,9 @@ class FileHandler:
             return self.person_list[person_index]
 
     def parse_nested_tokens(self, s: str, file_num: int):
-        right_token_index = 0
-        left_token_index = 0
-        iteration = 0
-
-        # TODO ensure that total count of left_token_trims = right_token_trims
-        # TODO support tokens greater than 1 character
-        for i in s:
-            if i == '{':
-                left_token_index = iteration
-            if i == '}':
-                right_token_index = iteration
-                break
-            iteration += 1
-        if right_token_index == 0 and left_token_index == 0:
+        token = file_utils.parse_string_for_token(s, self.left_token_trim, self.right_token_trim)
+        if token is None:
             return s
-
-        token = s[left_token_index:right_token_index + 1]
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         person = self.get_person(formatted_result, file_num)
         replace = data_handler.process(formatted_result, person)
