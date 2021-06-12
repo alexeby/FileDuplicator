@@ -72,3 +72,7 @@ Nested Token Test
 Number Formatter and Scramble String: {number_formatter('{scramble_string('XXX-XXX-XXXX')}')}
 Reformat Date: {date_formatter('{Person.dob}', '%Y-%m-%dT%H:%M:%S.%fZ', '%Y/%m/%d')}
 Reformat Date with inline token: {Person2.FirstName} was born on {date_formatter('{Person2.dob}', '%Y-%m-%dT%H:%M:%S.%fZ', '%m/%d/%Y')}
+
+Iterations
+Current File Number Count (starts at 1): {file_number} = {file_number}
+i iterations every time it is called regardless of file (starts at 0): {i} != {i} != {i} != {i} != {i}
