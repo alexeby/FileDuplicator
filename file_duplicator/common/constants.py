@@ -1,4 +1,6 @@
 class Constants:
+    iterator = 0
+
     PERSON = 'PERSON'
     ADDRESS = 'ADDRESS'
 

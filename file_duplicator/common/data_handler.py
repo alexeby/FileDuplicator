@@ -36,10 +36,16 @@ def get_person_value(tok, person):
     return switcher[tok]
 
 
-def process(token: str, person):
+def process(token: str, person, file_num):
     if token.upper().startswith(c.PERSON) or token.upper().startswith(c.ADDRESS):
         token_value = get_key(token.upper().split('.')[1], m.mapping_dictionary)
         return get_person_value(token_value, person)
+    elif token == 'file_number':
+        return str(int(file_num) + 1)
+    elif token == 'i':
+        i = c.iterator
+        c.iterator += 1
+        return str(i)
     else:
         return str(eval(token))
     pass

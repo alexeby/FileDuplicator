@@ -70,7 +70,7 @@ class Validate:
             return s
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         self.retrieve_unique_person_keys(formatted_result)
-        replace = data_handler.process(formatted_result, self.current_person)
+        replace = data_handler.process(formatted_result, self.current_person, '0')
         s = s.replace(token, replace, 1)
         return self.parse_nested_tokens(s)
 

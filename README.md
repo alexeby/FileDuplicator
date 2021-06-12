@@ -287,6 +287,7 @@ Reformat Date with inline token: Leroy was born on 05/17/1984
 |Release|Date|Notes|
 |---|---|---|
 |1.0.0|02/17/2021|+ Initial release|
-|1.0.1|02/04/2021|+ Fixed issue where application would not run on Windows 10 due to Windows Defender and Pyinstaller incompatibility|
+|1.0.1|03/04/2021|+ Fixed issue where application would not run on Windows 10 due to Windows Defender and Pyinstaller incompatibility|
 |1.0.2|03/05/2021|+ Added better error handling for invalid tokens<br>+ Improved naming convention of copied files|
 |2.0.0|03/18/2021|+ Added file pre-execution file validation<br>+ Added support for nested tokens<br>+ Added support for multiple unique persons and addresses to be generated per file<br>+ Added `clear_copy_path` configuration, when `True` the file output directory will have its contents deleted<br>+ Added support for custom mapping values specified in `mappings.ini`<br>+ Added additional person mappings from API including `Username` and `Password`<br>+ Added date_formatter, generate_string, and scramble_string functions<br>+ Added ability to generate all person and address tokens uniquely - specified when `all_unique_persons` configuration is `True`. This will cause multiple uses of `{Person.FirstName}` to generate a different name rather than the same as when `all_unique_persons` is `False`<br><br>- Removed `regex_pattern` configuration. Nested token support removed token validation with regex|
+|2.0.1|06/11/2021|+ Added stdout of files being created to better show progress<br>+ Added number iterator to create unique data. Useful for large data sets<br>+ Fixed bug where infinite loop could occur if no {Person} tag was used in the file|

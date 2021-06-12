@@ -1,5 +1,6 @@
 import sys
 import logging
+from datetime import datetime
 from .object.object_mapper import ObjectMapper
 from .exception.exception import InvalidTokenException
 from .common import data_handler
@@ -24,17 +25,19 @@ class FileHandler:
         self.all_unique_persons = all_unique_persons
         self.num_records_per_file = len(unique_person_keys) if len(unique_person_keys) > 0 else num_records_per_file
         self.mapping_tokens = dict.fromkeys(mapping_tokens, 0)
+        c.iterator = 0
 
         self.person_list = self.populate_person_list()
         self.unique_person_map = self.populate_multiple_person_map() if self.all_unique_persons.upper() != 'TRUE' \
             else self.populate_all_unique_map()
 
     def populate_person_list(self):
-        number_persons = self.num_records_per_file * self.num_copies
-        api_results: list = get_api_data(self.api_url + str(number_persons))
         person_list = []
-        for result in api_results:
-            person_list.append(ObjectMapper(result).map_person())
+        number_persons = self.num_records_per_file * self.num_copies
+        if number_persons > 0:
+            api_results: list = get_api_data(self.api_url + str(number_persons))
+            for result in api_results:
+                person_list.append(ObjectMapper(result).map_person())
         return person_list
 
     def populate_multiple_person_map(self):
@@ -79,7 +82,7 @@ class FileHandler:
             return s
         formatted_result = token.replace(self.left_token_trim, '').replace(self.right_token_trim, '')
         person = self.get_person(formatted_result, file_num)
-        replace = data_handler.process(formatted_result, person)
+        replace = data_handler.process(formatted_result, person, file_num)
         s = s.replace(token, replace, 1)
         return self.parse_nested_tokens(s, file_num)
 
@@ -103,7 +106,8 @@ class FileHandler:
                         line_number += 1
                     copy_file.close()
                     original_file.seek(0)
-
+                    print(f'    {datetime.now()} - Created file {copy_file_path}')
                 self.mapping_tokens = dict.fromkeys(self.mapping_tokens, 0)
+            print('All files created')
             logger.info(f'Process complete! {self.num_copies} copies were created in directory: {copy_file_dir}')
             original_file.close()
