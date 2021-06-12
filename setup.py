@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='fileDuplicator',
-    version='2.0.1',
+    version='3.0.0-dev',
     description='Duplicates files a certain number of times. Can use tokens to populate random person data.',
     # long_description=README,
     url='https://github.com/alexeby/FileDuplicator',
